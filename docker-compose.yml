@@ -1,0 +1,25 @@
+services:
+  chatbot_app:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    image: 'chatbot_service-image:latest'
+    container_name: 'chatbot_service-container'
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/chatbot_service
+    ports:
+      - 443:443
+    env_file:
+      - .env
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    networks:
+      - chatbot-service-network
+  
+networks:
+  chatbot-service-network:
+    name: chatbot-service
