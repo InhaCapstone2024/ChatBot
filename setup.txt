@@ -3,5 +3,5 @@ torch
 torchvision
 transformers
 langchain-aws
-elasticsearch
-mysql
+pinecone
+pymysql
